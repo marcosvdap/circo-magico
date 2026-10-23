@@ -1,0 +1,86 @@
+.numeros__hero {
+  padding: 10rem 3rem 5rem;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,168,76,0.1) 0%, transparent 70%),
+    var(--color-bg);
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+}
+
+.numeros__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+}
+
+.numeros__title {
+  font-family: var(--font-title);
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  color: var(--color-cream);
+  margin-bottom: 1rem;
+}
+
+.numeros__subtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--color-gray);
+  font-size: 1.1rem;
+}
+
+.numeros__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 3rem 6rem;
+}
+
+.numeros__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  margin-bottom: 3.5rem;
+}
+
+.numeros__filter {
+  background: none;
+  border: 1px solid rgba(201,168,76,0.2);
+  color: var(--color-gray);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.4rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.numeros__filter:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+.numeros__filter--active {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-bg);
+}
+
+.numeros__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .numeros__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .numeros__hero { padding: 8rem 1.5rem 4rem; }
+  .numeros__content { padding: 3rem 1.5rem 5rem; }
+  .numeros__grid { grid-template-columns: 1fr; }
+}

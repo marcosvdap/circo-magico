@@ -1,0 +1,252 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+/* Background image com zoom in/out */
+.hero__bg {
+  position: absolute;
+  inset: -10%;
+  background-size: cover;
+  background-position: center top;
+  animation: heroBgZoom 12s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+/* Overlay escuro sobre a imagem para manter legibilidade */
+.hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(13,5,0,0.45) 0%, rgba(13,5,0,0.75) 100%),
+    radial-gradient(ellipse 80% 60% at 50% 40%, rgba(139,26,26,0.3) 0%, transparent 70%);
+}
+
+@keyframes heroBgZoom {
+  from { transform: scale(1);    }
+  to   { transform: scale(1.12); }
+}
+
+/* Curtains */
+.hero__curtain {
+  position: absolute;
+  top: 0;
+  width: 18%;
+  height: 100%;
+  background: linear-gradient(to bottom,
+    #3d0000 0%,
+    #5c0a0a 20%,
+    #3d0000 40%,
+    #5c0a0a 60%,
+    #3d0000 80%,
+    #5c0a0a 100%
+  );
+  z-index: 1;
+}
+.hero__curtain--left  { left: 0;  border-right: 3px solid rgba(201,168,76,0.4); clip-path: polygon(0 0, 100% 0, 88% 100%, 0 100%); }
+.hero__curtain--right { right: 0; border-left:  3px solid rgba(201,168,76,0.4); clip-path: polygon(0 0, 100% 0, 100% 100%, 12% 100%); }
+
+/* Spotlights */
+.hero__lights {
+  position: absolute;
+  top: -20px;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero__light {
+  position: absolute;
+  top: 0;
+  left: calc(10% + var(--i) * 13%);
+  width: 2px;
+  height: 45%;
+  background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+  transform-origin: top center;
+  animation: swingLight 4s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * 0.6s);
+}
+
+.hero__light::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow: 0 0 12px 4px rgba(201,168,76,0.8);
+}
+
+@keyframes swingLight {
+  from { transform: rotate(-8deg); }
+  to   { transform: rotate(8deg); }
+}
+
+/* Content */
+.hero__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Logo image */
+.hero__logo-img {
+  width: clamp(280px, 60vw, 700px);
+  margin: 0 auto 1.8rem;
+  /* sombra para destacar do fundo escuro */
+  filter: drop-shadow(0 0 40px rgba(0,0,0,0.7));
+  animation: logoFadeIn 1.2s ease both;
+}
+
+@keyframes logoFadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Tagline "CIRCO — PERFORMANCES — EVENTOS" */
+.hero__tagline {
+  font-family: var(--font-body);
+  font-size: clamp(0.65rem, 1.5vw, 0.85rem);
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  opacity: 0.85;
+  margin-bottom: 2.5rem;
+}
+
+.hero__divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero__divider span:not(.hero__divider-star) {
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-gold));
+}
+
+.hero__divider span:last-child {
+  background: linear-gradient(to left, transparent, var(--color-gold));
+}
+
+.hero__divider-star {
+  color: var(--color-gold);
+  font-size: 1.1rem;
+}
+
+.hero__subtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: var(--color-gray);
+  margin-bottom: 3rem;
+  letter-spacing: 0.05em;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero__btn {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hero__btn--primary {
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+.hero__btn--primary:hover {
+  background: var(--color-gold-light);
+  box-shadow: 0 0 30px rgba(201,168,76,0.4);
+  transform: translateY(-2px);
+}
+
+.hero__btn--outline {
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+}
+
+.hero__btn--outline:hover {
+  background: rgba(201,168,76,0.1);
+  transform: translateY(-2px);
+}
+
+/* Ropes */
+.hero__rope {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 40%;
+  background: linear-gradient(to bottom, rgba(201,168,76,0.5), transparent);
+  z-index: 1;
+}
+.hero__rope--left  { left: 18%; }
+.hero__rope--right { right: 18%; }
+
+/* Scroll hint */
+.hero__scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.hero__scroll-hint span {
+  display: block;
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--color-gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+.hero__scroll-hint p {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gray);
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50%       { opacity: 0.4; transform: scaleY(0.6); }
+}
+
+@media (max-width: 768px) {
+  .hero__curtain { width: 10%; }
+  .hero__rope--left  { left: 10%; }
+  .hero__rope--right { right: 10%; }
+}
